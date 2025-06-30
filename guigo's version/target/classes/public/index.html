@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Contas a Pagar/Receber</title>
+  <meta charset="UTF-8" />
+  <title>Contas a Pagar/Receber</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Menu de Contas</h1>
-    
-    <form action="/cadastrar" method="post">
-        <h2>1. Cadastrar Conta</h2>
-        <input type="text" name="nome" placeholder="Nome da conta" required><br>
-        <input type="number" name="valor" placeholder="Valor" step="0.01" required><br>
-        <input type="text" name="vencimento" placeholder="Vencimento (dd/mm/aaaa)" required><br>
+  <div class="container">
+    <!-- Menu lateral minimalista -->
+    <aside class="sidebar">
+      <a href="dashboard.html" class="side-button">📋 Listar</a>
+
+      <form action="/relatorio" method="get">
+        <button type="submit" class="side-button">📊 Relatório</button>
+      </form>
+
+      <form action="/exportar" method="get">
+        <button type="submit" class="side-button">📁 Exportar</button>
+      </form>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <!-- 1. Cadastrar -->
+      <form action="/cadastrar" method="post" class="card compact">
+        <h2>Cadastrar</h2>
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="number" name="valor" placeholder="Valor" step="0.01" required />
+        <input type="date" name="vencimento" placeholder="Vencimento (dd/mm/aaaa)" required />
         <select name="tipo" required>
-            <option value="">Selecione o tipo</option>
-            <option value="PAGAR">PAGAR</option>
-            <option value="RECEBER">RECEBER</option>
-        </select><br>
+          <option value="">Tipo</option>
+          <option value="PAGAR">PAGAR</option>
+          <option value="RECEBER">RECEBER</option>
+        </select>
         <button type="submit">Cadastrar</button>
-    </form>
+      </form>
 
-    <form action="/listar" method="get">
-        <h2>2. Listar Todas as Contas</h2>
-        <a href="dashboard.html">Ir para o dash</a>
-    </form>
-
-    <form action="/atualizar" method="post">
-        <h2>3. Atualizar Conta</h2>
-        <input type="number" name="id" placeholder="ID da conta" required><br>
-        <input type="text" name="nome" placeholder="Novo nome"><br>
-        <input type="number" name="valor" placeholder="Novo valor" step="0.01"><br>
-        <input type="text" name="vencimento" placeholder="Nova data de vencimento"><br>
+      <!-- 3. Atualizar -->
+      <form action="/atualizar" method="post" class="card compact">
+        <h2>Atualizar</h2>
+        <input type="number" name="id" placeholder="ID" required />
+        <input type="text" name="nome" placeholder="Novo nome" />
+        <input type="number" name="valor" placeholder="Novo valor" step="0.01" />
+        <input type="date" name="vencimento" placeholder="Nova data" />
         <select name="tipo">
-            <option value="">Novo tipo</option>
-            <option value="PAGAR">PAGAR</option>
-            <option value="RECEBER">RECEBER</option>
-        </select><br>
+          <option value="">Tipo</option>
+          <option value="PAGAR">PAGAR</option>
+          <option value="RECEBER">RECEBER</option>
+        </select>
         <button type="submit">Atualizar</button>
-    </form>
+      </form>
 
-    <form action="/excluir" method="post">
-        <h2>4. Excluir Conta</h2>
-        <input type="number" name="id" placeholder="ID da conta" required>
-        <button type="submit">Excluir</button>
-    </form>
-
-    <form action="/relatorio" method="get">
-        <h2>5. Gerar Relatório</h2>
-        <button type="submit">Gerar</button>
-    </form>
-
-    <form action="/exportar" method="get">
-        <h2>6. Exportar para TXT</h2>
-        <button type="submit">Exportar</button>
-    </form>
+      <!-- 4. Excluir -->
+      <form action="/excluir" method="post" class="card compact">
+        <h2>Excluir</h2>
+        <input type="number" name="id" placeholder="ID" required />
+        <button class="exc" type="submit">Excluir</button>
+      </form>
+    </main>
+  </div>
 </body>
 </html>

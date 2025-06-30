@@ -1,0 +1,167 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0D1B2A;
+  color: #D9D9D9;
+  padding: 2rem;
+  min-height: 100vh;
+  padding-top: 40px; /* espaço para o botão fixo */
+}
+
+/* Botão voltar fixo no canto superior esquerdo */
+header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+header a {
+  display: inline-block;
+  background-color: #D9D9D9;
+  color: #333;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+header a:hover {
+  background-color: #B22222;
+  color: #D9D9D9;
+  box-shadow: 0 4px 10px #B22222;
+}
+
+/* Título centralizado */
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #D9D9D9;
+  font-weight: 600;
+}
+
+
+/* Formulário excluir estilizado e centralizado */
+.excluir-form {
+  max-width: 320px;
+  margin: 0 auto 2rem;
+  background: #23466B;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #A68C00;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.excluir-form h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #ddd;
+}
+
+.excluir-form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline-offset: 2px;
+  outline-color: #4a90e2;
+}
+
+.excluir-form button {
+  width: 100%;
+  padding: 0.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: #A68C00;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.excluir-form button:hover {
+  background-color: #B22222;
+}
+
+/* Barra de busca centralizada e com espaçamento */
+.search-wrapper {
+  max-width: 400px;
+  margin: 0 auto 3rem;
+
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.search-wrapper input[type="text"] {
+  flex-grow: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline-offset: 2px;
+  outline-color: #ffffff;
+}
+
+.search-wrapper button {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border: 1px solid #A68C00;
+  background-color: #A68C00;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-wrapper button:hover {
+  background-color: #B22222;
+  border-color: #B22222;
+}
+
+/* Tabela estilizada */
+table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  border-collapse: collapse;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead tr {
+  background-color: #23466B;
+  color: white;
+  text-align: left;
+  font-weight: 600;
+}
+
+thead th,
+tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #e8f0fe;
+}
+
+tbody td {
+  font-size: 0.95rem;
+  color: #333;
+}

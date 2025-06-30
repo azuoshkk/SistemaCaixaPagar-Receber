@@ -1,0 +1,110 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Corpo */
+body {
+  background-color: #0D1B2A;
+  color: #D9D9D9;
+  height: 100vh;
+}
+
+/* Layout principal */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Menu lateral */
+.sidebar {
+  background-color: #23466B;
+  border-right: 1px solid #A68C00;
+  padding: 2rem 1rem;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.side-button {
+  background: none;
+  border: none;
+  padding: 0.6rem 1rem;
+  background-color: #D9D9D9;
+  color: #333;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.side-button:hover {
+  background-color: #4A76A6;
+  color: #D9D9D9;
+}
+
+/* Área principal */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Formulário padrão */
+.card {
+  background-color: #23466B;
+  color: #D9D9D9;
+  border: 1px solid #1B263B;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Formulário compacto */
+.card.compact {
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #D9D9D9;
+}
+
+/* Campos */
+.card input,
+.card select,
+.card button {
+  width: 100%;
+  padding: 0.45rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Botão */
+.card button {
+  background-color: #A68C00;
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+
+.card button:hover {
+  background-color: #B22222;
+}

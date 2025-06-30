@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard de Contas</title>
+  <meta charset="UTF-8" />
+  <title>Dashboard de Contas</title>
+  <link rel="stylesheet" href="dashboard.css" />
 </head>
 <body>
-    <h1>Dashboard de Contas</h1>
+  <header>
+    <a href="index.html">← Voltar para Home</a>
+  </header>
 
-    <!-- 🔎 Campo de busca -->
-    <input type="text" id="busca" placeholder="Pesquisar por ID ou Nome">
+  <h1>Dashboard de Contas</h1>
+
+  <!-- Formulário exclusão -->
+  <form action="/excluir" method="post" class="excluir-form">
+    <h3>Excluir Conta</h3>
+    <input type="number" name="id" placeholder="ID da conta" required />
+    <button type="submit">Excluir</button>
+  </form>
+
+  <!-- Busca -->
+  <div class="search-wrapper">
+    <input type="text" id="busca" placeholder="Pesquisar por ID ou Nome" />
     <button onclick="buscar()">Buscar</button>
     <button onclick="buscar(true)">Limpar</button>
+  </div>
 
-    <!-- 🗑️ Formulário de exclusão -->
-    <form action="/excluir" method="post">
-        <h3>Excluir Conta</h3>
-        <input type="number" name="id" placeholder="ID da conta" required>
-        <button type="submit">Excluir</button>
-    </form>
+  <!-- Tabela -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th>Vencimento</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaContas"></tbody>
+  </table>
 
-    <!-- 📊 Tabela de contas -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Vencimento</th>
-                <th>Tipo</th>
-            </tr>
-        </thead>
-        <tbody id="tabelaContas">
-            <!-- Preenchido via JS -->
-        </tbody>
-    </table>
+  <script>
+    function buscar(limpar = false) {
+      const termo = limpar ? "" : document.getElementById("busca").value;
+      fetch("/contas" + (termo ? "?termo=" + termo : ""))
+        .then((res) => res.json())
+        .then((contas) => {
+          const tabela = document.getElementById("tabelaContas");
+          tabela.innerHTML = "";
+          contas.forEach((c) => {
+            const linha = document.createElement("tr");
+            linha.innerHTML = `
+              <td>${c.id}</td>
+              <td>${c.nome}</td>
+              <td>R$ ${c.valor.toFixed(2).replace(".", ",")}</td>
+              <td>${c.vencimento}</td>
+              <td>${c.tipo}</td>
+            `;
+            tabela.appendChild(linha);
+          });
+        });
+    }
 
-    <a href="index.html">Voltar para Home</a>
+    buscar();
 
-    <script>
-        function buscar(limpar = false) {
-            const termo = limpar ? "" : document.getElementById('busca').value;
-            fetch('/contas' + (termo ? '?termo=' + termo : ''))
-                .then(res => res.json())
-                .then(contas => {
-                    const tabela = document.getElementById('tabelaContas');
-                    tabela.innerHTML = "";
-                    contas.forEach(c => {
-                        const linha = document.createElement('tr');
-                        linha.innerHTML = `
-                            <td>${c.id}</td>
-                            <td>${c.nome}</td>
-                            <td>R$ ${c.valor.toFixed(2).replace('.', ',')}</td>
-                            <td>${c.vencimento}</td>
-                            <td>${c.tipo}</td>
-                        `;
-                        tabela.appendChild(linha);
-                    });
-                });
-        }
-
-        // Carrega todas ao abrir
-        buscar();
-    </script>
+    // ALERTA de sucesso/erro com base no parâmetro ?msg=
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get("msg");
+    if (msg === "sucesso") {
+      alert("Operação realizada com sucesso!");
+    } else if (msg === "erro") {
+      alert("Erro ao realizar a operação.");
+    }
+  </script>
 </body>
 </html>

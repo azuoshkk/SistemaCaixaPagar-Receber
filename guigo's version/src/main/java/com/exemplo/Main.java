@@ -83,12 +83,23 @@ public class Main {
 
         // Rota 5 - Excluir
         post("/excluir", (req, res) -> {
-            int id = Integer.parseInt(req.queryParams("id"));
-            contas.removeIf(c -> c.id == id);
-            System.out.println("Conta excluída via HTML: ID " + id);
-            res.redirect("/index.html");
-            return null;
-        });
+    try {
+        int id = Integer.parseInt(req.queryParams("id"));
+        boolean removido = contas.removeIf(c -> c.id == id);
+
+        String referer = req.headers("Referer");
+        String redirectTo = (referer != null && referer.contains("dashboard.html")) 
+            ? "/dashboard.html" 
+            : "/index.html";
+
+        res.redirect(redirectTo + "?msg=" + (removido ? "sucesso" : "erro"));
+    } catch (Exception e) {
+        res.redirect("/index.html?msg=erro");
+    }
+    return null;
+});
+
+
 
         // Rota 6 - Relatório
         get("/relatorio", (req, res) -> {
