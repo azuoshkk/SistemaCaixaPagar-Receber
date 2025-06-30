@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Contas</title>
+</head>
+<body>
+    <h1>Dashboard de Contas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Vencimento</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaContas">
+            <!-- Preenchido via JS -->
+        </tbody>
+    </table>
+
+    <a href="index.html">voltar pra home</a>
+
+    <script>
+        fetch('/contas')
+            .then(res => res.json())
+            .then(contas => {
+                const tabela = document.getElementById('tabelaContas');
+                contas.forEach(c => {
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${c.id}</td>
+                        <td>${c.nome}</td>
+                        <td>R$ ${c.valor.toFixed(2).replace('.', ',')}</td>
+                        <td>${c.vencimento}</td>
+                        <td>${c.tipo}</td>
+                    `;
+                    tabela.appendChild(linha);
+                });
+            });
+    </script>
+</body>
+</html>

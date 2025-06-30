@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Contas a Pagar/Receber</title>
+</head>
+<body>
+    <h1>Menu de Contas</h1>
+    
+    <form action="/cadastrar" method="post">
+        <h2>1. Cadastrar Conta</h2>
+        <input type="text" name="nome" placeholder="Nome da conta" required><br>
+        <input type="number" name="valor" placeholder="Valor" step="0.01" required><br>
+        <input type="text" name="vencimento" placeholder="Vencimento (dd/mm/aaaa)" required><br>
+        <select name="tipo" required>
+            <option value="">Selecione o tipo</option>
+            <option value="PAGAR">PAGAR</option>
+            <option value="RECEBER">RECEBER</option>
+        </select><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <form action="/consultar" method="get">
+        <h2>2. Consultar Conta</h2>
+        <input type="text" name="termo" placeholder="Nome ou ID" required>
+        <button type="submit">Consultar</button>
+    </form>
+
+    <form action="/listar" method="get">
+        <h2>3. Listar Todas as Contas</h2>
+        <a href="dashboard.html">Ir para o dash</a>
+    </form>
+
+    <form action="/atualizar" method="post">
+        <h2>4. Atualizar Conta</h2>
+        <input type="number" name="id" placeholder="ID da conta" required><br>
+        <input type="text" name="nome" placeholder="Novo nome"><br>
+        <input type="number" name="valor" placeholder="Novo valor" step="0.01"><br>
+        <input type="text" name="vencimento" placeholder="Nova data de vencimento"><br>
+        <select name="tipo">
+            <option value="">Novo tipo</option>
+            <option value="PAGAR">PAGAR</option>
+            <option value="RECEBER">RECEBER</option>
+        </select><br>
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <form action="/excluir" method="post">
+        <h2>5. Excluir Conta</h2>
+        <input type="number" name="id" placeholder="ID da conta" required>
+        <button type="submit">Excluir</button>
+    </form>
+
+    <form action="/relatorio" method="get">
+        <h2>6. Gerar Relatório</h2>
+        <button type="submit">Gerar</button>
+    </form>
+
+    <form action="/exportar" method="get">
+        <h2>7. Exportar para TXT</h2>
+        <button type="submit">Exportar</button>
+    </form>
+</body>
+</html>
