@@ -20,19 +20,13 @@
         <button type="submit">Cadastrar</button>
     </form>
 
-    <form action="/consultar" method="get">
-        <h2>2. Consultar Conta</h2>
-        <input type="text" name="termo" placeholder="Nome ou ID" required>
-        <button type="submit">Consultar</button>
-    </form>
-
     <form action="/listar" method="get">
-        <h2>3. Listar Todas as Contas</h2>
+        <h2>2. Listar Todas as Contas</h2>
         <a href="dashboard.html">Ir para o dash</a>
     </form>
 
     <form action="/atualizar" method="post">
-        <h2>4. Atualizar Conta</h2>
+        <h2>3. Atualizar Conta</h2>
         <input type="number" name="id" placeholder="ID da conta" required><br>
         <input type="text" name="nome" placeholder="Novo nome"><br>
         <input type="number" name="valor" placeholder="Novo valor" step="0.01"><br>
@@ -46,18 +40,18 @@
     </form>
 
     <form action="/excluir" method="post">
-        <h2>5. Excluir Conta</h2>
+        <h2>4. Excluir Conta</h2>
         <input type="number" name="id" placeholder="ID da conta" required>
         <button type="submit">Excluir</button>
     </form>
 
     <form action="/relatorio" method="get">
-        <h2>6. Gerar Relatório</h2>
+        <h2>5. Gerar Relatório</h2>
         <button type="submit">Gerar</button>
     </form>
 
     <form action="/exportar" method="get">
-        <h2>7. Exportar para TXT</h2>
+        <h2>6. Exportar para TXT</h2>
         <button type="submit">Exportar</button>
     </form>
 </body>

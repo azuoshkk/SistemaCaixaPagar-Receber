@@ -6,6 +6,20 @@
 </head>
 <body>
     <h1>Dashboard de Contas</h1>
+
+    <!-- 🔎 Campo de busca -->
+    <input type="text" id="busca" placeholder="Pesquisar por ID ou Nome">
+    <button onclick="buscar()">Buscar</button>
+    <button onclick="buscar(true)">Limpar</button>
+
+    <!-- 🗑️ Formulário de exclusão -->
+    <form action="/excluir" method="post">
+        <h3>Excluir Conta</h3>
+        <input type="number" name="id" placeholder="ID da conta" required>
+        <button type="submit">Excluir</button>
+    </form>
+
+    <!-- 📊 Tabela de contas -->
     <table border="1">
         <thead>
             <tr>
@@ -21,25 +35,32 @@
         </tbody>
     </table>
 
-    <a href="index.html">voltar pra home</a>
+    <a href="index.html">Voltar para Home</a>
 
     <script>
-        fetch('/contas')
-            .then(res => res.json())
-            .then(contas => {
-                const tabela = document.getElementById('tabelaContas');
-                contas.forEach(c => {
-                    const linha = document.createElement('tr');
-                    linha.innerHTML = `
-                        <td>${c.id}</td>
-                        <td>${c.nome}</td>
-                        <td>R$ ${c.valor.toFixed(2).replace('.', ',')}</td>
-                        <td>${c.vencimento}</td>
-                        <td>${c.tipo}</td>
-                    `;
-                    tabela.appendChild(linha);
+        function buscar(limpar = false) {
+            const termo = limpar ? "" : document.getElementById('busca').value;
+            fetch('/contas' + (termo ? '?termo=' + termo : ''))
+                .then(res => res.json())
+                .then(contas => {
+                    const tabela = document.getElementById('tabelaContas');
+                    tabela.innerHTML = "";
+                    contas.forEach(c => {
+                        const linha = document.createElement('tr');
+                        linha.innerHTML = `
+                            <td>${c.id}</td>
+                            <td>${c.nome}</td>
+                            <td>R$ ${c.valor.toFixed(2).replace('.', ',')}</td>
+                            <td>${c.vencimento}</td>
+                            <td>${c.tipo}</td>
+                        `;
+                        tabela.appendChild(linha);
+                    });
                 });
-            });
+        }
+
+        // Carrega todas ao abrir
+        buscar();
     </script>
 </body>
 </html>

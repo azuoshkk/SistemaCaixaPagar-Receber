@@ -124,9 +124,25 @@ public class Main {
 
         // Rota para dashboard (JSON)
         get("/contas", (req, res) -> {
-            res.type("application/json");
-            return new com.google.gson.Gson().toJson(contas);
-        });
+    res.type("application/json");
+    String termo = req.queryParams("termo");
+
+    if (termo == null || termo.isEmpty()) {
+        return new com.google.gson.Gson().toJson(contas);
+    }
+
+    termo = termo.toLowerCase();
+    List<Conta> filtradas = new ArrayList<>();
+    for (Conta c : contas) {
+        if (String.valueOf(c.id).equals(termo) || c.nome.toLowerCase().contains(termo)) {
+            filtradas.add(c);
+        }
+    }
+
+    return new com.google.gson.Gson().toJson(filtradas);
+});
+
+
 
 
         // Parte 2: Menu Interativo no terminal
