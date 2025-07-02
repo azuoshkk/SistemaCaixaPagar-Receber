@@ -1,1 +1,2 @@
-ID: 1 | Nome: Agua | Valor: 1500,00 | Vencimento: 2006-02-20 | Tipo: PAGAR
+ID: 2 | Nome: gas | Valor: 900,00 | Vencimento: 2004-01-01 | Tipo: RECEBER
+ID: 3 | Nome: agua | Valor: 1500,00 | Vencimento: 2016-04-08 | Tipo: PAGAR
